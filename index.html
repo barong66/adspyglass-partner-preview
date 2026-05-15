@@ -418,31 +418,58 @@
             <input type="text" required class="mt-1.5 w-full rounded-lg ring-1 ring-ink-300 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-accent-500 focus:outline-none" placeholder="@yourhandle">
           </div>
           <div class="md:col-span-2">
-            <label class="block text-sm font-medium text-ink-900">Monthly traffic volume</label>
-            <input type="text" class="mt-1.5 w-full rounded-lg ring-1 ring-ink-300 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-accent-500 focus:outline-none" placeholder="Impressions or USD revenue — whichever you track">
-          </div>
-          <div class="md:col-span-2">
-            <label class="block text-sm font-medium text-ink-900 mb-2">Inventory types</label>
-            <div class="flex flex-wrap gap-2">
-              <label class="inline-flex items-center gap-2 ring-1 ring-ink-300 rounded-full px-3.5 py-1.5 text-sm hover:bg-white cursor-pointer has-[:checked]:bg-accent-500/10 has-[:checked]:ring-accent-500 has-[:checked]:text-accent-700">
-                <input type="checkbox" class="hidden"> Tube sites
+            <label class="block text-sm font-medium text-ink-900 mb-2">Stream <span class="text-accent-600">*</span></label>
+            <div class="flex flex-wrap gap-4">
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="stream" value="mainstream" required class="w-4 h-4 accent-accent-500">
+                <span class="text-sm text-ink-800">Mainstream</span>
               </label>
-              <label class="inline-flex items-center gap-2 ring-1 ring-ink-300 rounded-full px-3.5 py-1.5 text-sm hover:bg-white cursor-pointer has-[:checked]:bg-accent-500/10 has-[:checked]:ring-accent-500 has-[:checked]:text-accent-700">
-                <input type="checkbox" class="hidden"> Adult
-              </label>
-              <label class="inline-flex items-center gap-2 ring-1 ring-ink-300 rounded-full px-3.5 py-1.5 text-sm hover:bg-white cursor-pointer has-[:checked]:bg-accent-500/10 has-[:checked]:ring-accent-500 has-[:checked]:text-accent-700">
-                <input type="checkbox" class="hidden"> File share
-              </label>
-              <label class="inline-flex items-center gap-2 ring-1 ring-ink-300 rounded-full px-3.5 py-1.5 text-sm hover:bg-white cursor-pointer has-[:checked]:bg-accent-500/10 has-[:checked]:ring-accent-500 has-[:checked]:text-accent-700">
-                <input type="checkbox" class="hidden"> URL shortener
-              </label>
-              <label class="inline-flex items-center gap-2 ring-1 ring-ink-300 rounded-full px-3.5 py-1.5 text-sm hover:bg-white cursor-pointer has-[:checked]:bg-accent-500/10 has-[:checked]:ring-accent-500 has-[:checked]:text-accent-700">
-                <input type="checkbox" class="hidden"> Video hosting
-              </label>
-              <label class="inline-flex items-center gap-2 ring-1 ring-ink-300 rounded-full px-3.5 py-1.5 text-sm hover:bg-white cursor-pointer has-[:checked]:bg-accent-500/10 has-[:checked]:ring-accent-500 has-[:checked]:text-accent-700">
-                <input type="checkbox" class="hidden"> General web
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input type="radio" name="stream" value="adult" required class="w-4 h-4 accent-accent-500">
+                <span class="text-sm text-ink-800">Adult</span>
               </label>
             </div>
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-ink-900 mb-2">Ad formats</label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 rounded accent-accent-500">
+                <span class="text-sm text-ink-800">Popunders</span>
+              </label>
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 rounded accent-accent-500">
+                <span class="text-sm text-ink-800">Display Banners</span>
+              </label>
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 rounded accent-accent-500">
+                <span class="text-sm text-ink-800">In-video Ads</span>
+              </label>
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 rounded accent-accent-500">
+                <span class="text-sm text-ink-800">Slider Ads</span>
+              </label>
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 rounded accent-accent-500">
+                <span class="text-sm text-ink-800">In-page Push</span>
+              </label>
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 rounded accent-accent-500">
+                <span class="text-sm text-ink-800">Interstitial Ads</span>
+              </label>
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 rounded accent-accent-500">
+                <span class="text-sm text-ink-800">Native Banners</span>
+              </label>
+              <label class="inline-flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" class="w-4 h-4 rounded accent-accent-500">
+                <span class="text-sm text-ink-800">Direct Links</span>
+              </label>
+            </div>
+          </div>
+          <div class="md:col-span-2">
+            <label class="block text-sm font-medium text-ink-900">API docs URL</label>
+            <input type="url" class="mt-1.5 w-full rounded-lg ring-1 ring-ink-300 px-3.5 py-2.5 text-sm focus:ring-2 focus:ring-accent-500 focus:outline-none" placeholder="https://docs.yournetwork.com/api">
           </div>
           <div class="md:col-span-2">
             <label class="block text-sm font-medium text-ink-900">Anything else we should know?</label>
@@ -455,14 +482,11 @@
           <span class="text-sm text-ink-800">I confirm the <a href="#terms" class="text-accent-600 underline">$1,000 onboarding deposit and 5% rev share terms</a>.</span>
         </label>
 
-        <div class="flex flex-col sm:flex-row gap-3 sm:items-center pt-2">
+        <div class="pt-2">
           <button type="submit" class="inline-flex items-center justify-center gap-2 bg-accent-500 hover:bg-accent-600 text-ink-900 font-semibold px-6 py-3 rounded-lg transition">
             Submit application
             <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
           </button>
-          <p class="text-sm text-ink-400">
-            Prefer email? Reach us at <a href="mailto:demand@adspyglass.com" class="text-accent-600 underline">demand@adspyglass.com</a>.
-          </p>
         </div>
       </form>
     </div>
