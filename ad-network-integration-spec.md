@@ -1,36 +1,36 @@
-# Техническая спецификация интеграции для рекламных сетей
+# Technical Integration Specification for Ad Networks
 
-Документ описывает API, которое рекламная сеть должна реализовать для подключения к нашей ротации.
+This document describes the API your ad network needs to expose for integration with our rotation engine.
 
 ---
 
-## Общие требования
+## General Requirements
 
-| Параметр | Значение |
+| Parameter | Value |
 |---|---|
-| Протокол | HTTPS |
-| Формат данных | JSON |
-| Кодировка | UTF-8 |
-| Авторизация | Любой удобный вам способ. Примеры: `apiKey` в query-параметре, `Authorization: Bearer <token>` в заголовке, кастомный заголовок (`X-Api-Key`, `X-Auth-Token`). |
-| Формат ответа | Для эндпоинта «Рекламный код зоны» (см. 1.2) на выбор: (1) два поля сразу - `html` и `url`, одно из них может быть пустым; (2) одно поле + явное указание типа в `type` (`html` или `url`). Остальные эндпоинты - обычный JSON. |
+| Protocol | HTTPS |
+| Data format | JSON |
+| Encoding | UTF-8 |
+| Authentication | Any method that works for you. Examples: `apiKey` as a query parameter, `Authorization: Bearer <token>` header, or a custom header (`X-Api-Key`, `X-Auth-Token`). |
+| Response format | The "Zone ad code" endpoint (see 1.2) accepts one of two shapes: (1) both `html` and `url` fields at once, one may be empty; (2) one field plus an explicit `type` (`html` or `url`). All other endpoints return regular JSON. |
 
 ---
 
-## Часть 1. Зоны и рекламные коды
+## Part 1. Zones and ad code
 
-> **Важно про эндпоинты.** Все URL ниже (`/api/v1/sites`, `/api/v1/zones/{zone_id}/code`, `/api/v1/stats`) - это **примеры структуры**, а не обязательные пути. Используйте свои - главное пришлите нам актуальные адреса и сохраните смысл (что возвращает метод, какие параметры принимает).
+> **Note on endpoints.** All URLs below (`/api/v1/sites`, `/api/v1/zones/{zone_id}/code`, `/api/v1/stats`) are **structural examples**, not required paths. Use whatever paths suit your stack — just send us the actual URLs and preserve the semantics (what each method returns and what parameters it accepts).
 
-### 1.1. Список сайтов и рекламных зон
+### 1.1. List of sites and ad zones
 
 **Endpoint**
 ```
 GET /api/v1/sites
 ```
 
-**Описание**
-Возвращает все сайты партнёра вместе с их рекламными зонами.
+**Description**
+Returns all of the partner's sites along with their ad zones.
 
-**Пример ответа**
+**Example response**
 ```json
 {
   "sites": [
@@ -66,25 +66,25 @@ GET /api/v1/sites
 }
 ```
 
-> Структура ответа может отличаться, главное - сохранить смысл: сайт → массив зон с `zone_id` и названием.
+> The response structure can differ — what matters is the semantics: site → array of zones with `zone_id` and a name.
 
 ---
 
-### 1.2. Рекламный код зоны
+### 1.2. Zone ad code
 
 **Endpoint**
 ```
 GET /api/v1/zones/{zone_id}/code
 ```
 
-**Описание**
-Возвращает рекламный материал зоны - HTML-сниппет, URL для встраивания, или то и другое сразу.
+**Description**
+Returns the ad creative for the zone — an HTML snippet, a URL for embedding, or both.
 
-> Двойной формат ответа (ниже) применяется **только к этому эндпоинту**. Остальные методы API возвращают обычный JSON.
+> The dual-format response below applies **only to this endpoint**. All other API methods return regular JSON.
 
-Допустимы два варианта структуры ответа:
+Two response shapes are acceptable:
 
-**Вариант 1 - оба поля сразу (`html` + `url`), одно может быть пустым/`null`**
+**Option 1 — both fields at once (`html` + `url`), one may be empty / `null`**
 ```json
 {
   "zone_id": 1,
@@ -100,7 +100,7 @@ GET /api/v1/zones/{zone_id}/code
 }
 ```
 
-**Вариант 2 - одно поле + явный `type`**
+**Option 2 — one field plus an explicit `type`**
 ```json
 {
   "zone_id": 1,
@@ -118,33 +118,33 @@ GET /api/v1/zones/{zone_id}/code
 
 ---
 
-## Часть 2. Статистика
+## Part 2. Statistics
 
-Статистика отдаётся по рекламным зонам в разрезе:
+Statistics are reported per ad zone, sliced by:
 
-- **дат** (`date`)
-- **стран** (`country`)
-- **сабайди** (`sub_id`)
+- **dates** (`date`)
+- **countries** (`country`)
+- **sub-ids** (`sub_id`)
 
-Множественная группировка в одном запросе - желательно, но не обязательно. Если не поддерживаете - отдавайте по одному измерению за запрос, мы сделаем несколько вызовов.
+Multi-dimensional grouping in a single request is preferred but not required. If you don't support it, return one dimension per request and we'll make multiple calls.
 
-### 2.1. Получение статистики
+### 2.1. Fetching statistics
 
 **Endpoint**
 ```
 GET /api/v1/stats
 ```
 
-**Параметры запроса**
+**Query parameters**
 
-| Параметр | Тип | Обязательный | Описание |
+| Parameter | Type | Required | Description |
 |---|---|---|---|
-| `date_from` | `YYYY-MM-DD` | да | Начало периода |
-| `date_to` | `YYYY-MM-DD` | да | Конец периода |
-| `group_by` | список через запятую | да | Поля группировки: `date`, `country`, `sub_id` |
-| `zone_id` | int | нет | Фильтр по конкретной зоне |
+| `date_from` | `YYYY-MM-DD` | yes | Start of the period |
+| `date_to` | `YYYY-MM-DD` | yes | End of the period |
+| `group_by` | comma-separated list | yes | Grouping fields: `date`, `country`, `sub_id` |
+| `zone_id` | int | no | Filter by a specific zone |
 
-**Примеры запросов**
+**Example requests**
 
 ```
 GET /api/v1/stats?date_from=2025-01-01&date_to=2025-01-07&group_by=date,country
@@ -152,7 +152,7 @@ GET /api/v1/stats?date_from=2025-01-01&date_to=2025-01-07&group_by=date,sub_id
 GET /api/v1/stats?date_from=2025-01-01&date_to=2025-01-07&group_by=date,country,sub_id&zone_id=1
 ```
 
-**Пример ответа**
+**Example response**
 ```json
 {
   "data": [
@@ -178,30 +178,30 @@ GET /api/v1/stats?date_from=2025-01-01&date_to=2025-01-07&group_by=date,country,
 }
 ```
 
-> Названия полей и структура ответа выше - **только пример**. У вас они могут называться иначе (`shows`/`views` вместо `impressions`, `earnings`/`payout` вместо `revenue`, вложенные объекты вместо плоского списка и т.п.). Главное - чтобы в ответе присутствовали все поля группировки и метрики: показы, клики, доход. Пришлите нам вашу актуальную схему.
+> Field names and response shape above are **just an example**. Yours may use different names (`shows`/`views` instead of `impressions`, `earnings`/`payout` instead of `revenue`, nested objects instead of a flat list, etc.). What matters is that the response contains the grouping fields and the core metrics: impressions, clicks, revenue. Send us your actual schema.
 
 ---
 
-## Часть 3. Передача `sub_id` и `keywords`
+## Part 3. Passing `sub_id` and `keywords`
 
-Нам критически важно передавать на стороне трафика **subID** (для треккинга источника) и **keywords** (для таргетинга/контекста). Опишите, пожалуйста, как ваш формат принимает эти параметры - на примерах ниже.
+We critically depend on passing **subID** (for source tracking) and **keywords** (for targeting and context) along with traffic. Please describe how your format accepts these parameters — examples below.
 
-### 3.1. Через URL-зону (`type: "url"`)
+### 3.1. Via a URL zone (`type: "url"`)
 
-Ожидаем возможность подстановки макросов или query-параметров:
+We expect either macro substitution or query parameters:
 
 ```
 https://ads.example.com/render?zone_id=2&sub_id={SUB_ID}&keywords={KEYWORDS}
 ```
 
-Пример заполненной ссылки:
+Example of a substituted URL:
 ```
 https://ads.example.com/render?zone_id=2&sub_id=user_42_landing_A&keywords=casino,slots,bonus
 ```
 
-### 3.2. Через HTML-зону (`type: "html"`)
+### 3.2. Via an HTML zone (`type: "html"`)
 
-Ожидаем макросы внутри сниппета, которые мы подменяем перед отдачей пользователю:
+We expect macros inside the snippet, which we replace before serving to the user:
 
 ```html
 <script
@@ -212,29 +212,29 @@ https://ads.example.com/render?zone_id=2&sub_id=user_42_landing_A&keywords=casin
 </script>
 ```
 
-Либо как параметры скрипта:
+Or as script parameters:
 
 ```html
 <script src="https://ads.example.com/ad.js?zone=zone_1&sub_id={SUB_ID}&keywords={KEYWORDS}"></script>
 ```
 
-### 3.3. Что нужно от вас
+### 3.3. What we need from you
 
-Для проверки интеграции пришлите доступ к **рабочему или тестовому аккаунту** с реальными данными, на которых мы сможем прогнать все эндпоинты:
+To validate the integration, please give us access to a **live or test account** with real data so we can exercise all the endpoints:
 
-1. **Учётные данные** для авторизации (API-ключ / токен / логин-пароль - в зависимости от выбранного способа).
-2. **Хотя бы один сайт** в аккаунте с заведёнными рекламными зонами - чтобы `/sites` и `/zones/{id}/code` отдавали непустой ответ.
-3. **Накопленный трафик** по этим зонам (показы, клики, доход) - чтобы можно было дёрнуть `/stats` за прошедший период и увидеть реальные цифры в разрезе дат, стран и `sub_id`.
+1. **Auth credentials** (API key / token / login+password — depending on your chosen method).
+2. **At least one site** in the account with ad zones configured — so that `/sites` and `/zones/{id}/code` return non-empty responses.
+3. **Accumulated traffic** on those zones (impressions, clicks, revenue) — so we can hit `/stats` for a past period and see real numbers grouped by date, country, and `sub_id`.
 
-Без живых данных мы не сможем валидировать ответы и формат группировок.
+Without live data we can't validate responses or grouping formats.
 
 ---
 
-## Часть 4. Лимиты API
+## Part 4. API limits
 
-Чтобы корректно настроить ротацию и сбор статистики на нашей стороне, пришлите следующую информацию о вашем API:
+To configure rotation and stats collection on our side, please send us the following information about your API:
 
-1. **Rate limit для `/stats`** - максимальное количество запросов за единицу времени (в секунду / минуту / час). Лимит интересует только по статистике - `/sites` и `/zones/{id}/code` мы дёргаем крайне редко.
-2. **Код ответа при превышении лимита** - какой HTTP-статус возвращается (`429 Too Many Requests`, `503`, что-то другое) и есть ли заголовок с указанием времени ожидания (`Retry-After`, `X-RateLimit-Reset` и т.п.).
-3. **Максимальный период статистики за один запрос** - сколько дней можно запросить в одном вызове `/stats` (например, до 31 дня, до 90 дней). Если есть лимит по количеству строк в ответе - тоже укажите.
-4. **Поведение при выходе за лимит периода** - ошибка или автоматическое усечение результата.
+1. **Rate limit for `/stats`** — the maximum number of requests per unit of time (per second / minute / hour). The limit only matters for stats — we call `/sites` and `/zones/{id}/code` very rarely.
+2. **Response code on overage** — which HTTP status is returned (`429 Too Many Requests`, `503`, something else) and whether there's a header indicating retry timing (`Retry-After`, `X-RateLimit-Reset`, etc.).
+3. **Maximum stats period per request** — how many days can be requested in a single `/stats` call (for example, up to 31 days, up to 90 days). If there's a row-count limit on the response, share that too.
+4. **Behavior beyond the period limit** — error response or automatic truncation of the result.
