@@ -1,8 +1,8 @@
 <% content_for :seo_title, "Partner Program for Ad Networks" %>
 <% content_for :seo_description, "Two ways for ad networks and DSPs to access AdSpyglass publisher traffic — buy on Traforama, or pre-integrate your network. $1,000 deposit + 5% rev share for pre-integration." %>
 
-<!-- Hero -->
-<section class="mt-md-5 mt-4 pt-xxl-4 pt-xl-3 pt-lg-2 pt-md-0 pt-2 mb-5 pb-xxl-5 pb-lg-4 pb-3">
+<!-- Hero with ad formats -->
+<section class="mt-md-5 mt-4 pt-xxl-4 pt-xl-3 pt-lg-2 pt-md-0 pt-2 mb-5 pb-xxl-5 pb-lg-4 pb-3 min-vh-100 d-flex align-items-center">
   <div class="container">
     <div class="mb-lg-5 mb-4 pb-lg-0 pb-md-2 mx-auto text-center">
       <h1 class="mb-md-4 mb-3 display-3">
@@ -18,140 +18,72 @@
         </a>
       </div>
     </div>
-    <%= image_tag 'asg/partner-program/img1.png', alt: 'Illustration', class: 'd-md-block d-none', loading: 'lazy' %>
-    <%= image_tag 'asg/partner-program/img1-mob.png', alt: 'Illustration', class: 'd-md-none d-block mx-auto', loading: 'lazy' %>
-  </div>
-</section>
 
-<!-- Inventory -->
-<section class="py-5 bg-dark text-light min-vh-100 d-flex align-items-center">
-  <div class="my-lg-5 my-md-4 my-3 container">
-    <h2 class="mb-5 pb-2 h1 text-center text-light">
-      You will have access to the unique inventory
-    </h2>
-    <p class="mb-4 fs-lg text-center text-light">
+    <!-- Ad formats grid -->
+    <p class="text-center mb-4 fs-sm fw-semibold text-uppercase text-body-secondary" style="letter-spacing: .08em;">
       Ad formats we support
     </p>
-    <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 mb-5 gy-4 gx-md-4 gx-3 justify-content-center">
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-lg-4 g-3 mx-auto" style="max-width: 78.5rem;">
       <div class="col">
-        <div class="position-relative">
-          <div class=" rounded mb-3">
-            <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/01.png', alt: 'Popunders', class: '', loading: 'lazy' %>
-          </div>
-          <h3 class="mb-0 h6 text-light">
-            Popunders
-          </h3>
+        <div class="d-flex align-items-center gap-3 bg-white rounded-4 p-3 h-100">
+          <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/01.png', alt: 'Popunders', class: 'rounded flex-shrink-0', style: 'width:56px;height:auto;', loading: 'lazy' %>
+          <span class="fw-semibold">Popunders</span>
         </div>
       </div>
       <div class="col">
-        <div class="position-relative">
-          <div class=" rounded mb-3">
-            <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/02.png', alt: 'Display Banners', class: '', loading: 'lazy' %>
-          </div>
-          <h3 class="mb-0 h6 text-light">
-            Display Banners
-          </h3>
+        <div class="d-flex align-items-center gap-3 bg-white rounded-4 p-3 h-100">
+          <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/02.png', alt: 'Display Banners', class: 'rounded flex-shrink-0', style: 'width:56px;height:auto;', loading: 'lazy' %>
+          <span class="fw-semibold">Display Banners</span>
         </div>
       </div>
       <div class="col">
-        <div class="position-relative">
-          <div class=" rounded mb-3">
-            <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/04.png', alt: 'Slider Ads', class: '', loading: 'lazy' %>
-          </div>
-          <h3 class="mb-0 h6 text-light">
-            Slider Ads
-          </h3>
+        <div class="d-flex align-items-center gap-3 bg-white rounded-4 p-3 h-100">
+          <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/06.png', alt: 'In-video Ads', class: 'rounded flex-shrink-0', style: 'width:56px;height:auto;', loading: 'lazy' %>
+          <span class="fw-semibold">In-video Ads</span>
         </div>
       </div>
       <div class="col">
-        <div class="position-relative">
-          <div class=" rounded mb-3">
-            <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/06.png', alt: 'In-video Ads', class: '', loading: 'lazy' %>
-          </div>
-          <h3 class="mb-0 h6 text-light">
-            In-video Ads
-          </h3>
+        <div class="d-flex align-items-center gap-3 bg-white rounded-4 p-3 h-100">
+          <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/04.png', alt: 'Slider Ads', class: 'rounded flex-shrink-0', style: 'width:56px;height:auto;', loading: 'lazy' %>
+          <span class="fw-semibold">Slider Ads</span>
         </div>
       </div>
       <div class="col">
-        <div class="position-relative">
-          <div class=" rounded mb-3">
-            <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/09.png', alt: 'In-page Push', class: '', loading: 'lazy' %>
-          </div>
-          <h3 class="mb-0 h6 text-light">
-            In-page Push
-          </h3>
+        <div class="d-flex align-items-center gap-3 bg-white rounded-4 p-3 h-100">
+          <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/09.png', alt: 'In-page Push', class: 'rounded flex-shrink-0', style: 'width:56px;height:auto;', loading: 'lazy' %>
+          <span class="fw-semibold">In-page Push</span>
         </div>
       </div>
       <div class="col">
-        <div class="position-relative">
-          <div class=" rounded mb-3">
-            <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/10.png', alt: 'Interstitial Ads', class: '', loading: 'lazy' %>
-          </div>
-          <h3 class="mb-0 h6 text-light">
-            Interstitial Ads
-          </h3>
+        <div class="d-flex align-items-center gap-3 bg-white rounded-4 p-3 h-100">
+          <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/10.png', alt: 'Interstitial Ads', class: 'rounded flex-shrink-0', style: 'width:56px;height:auto;', loading: 'lazy' %>
+          <span class="fw-semibold">Interstitial Ads</span>
         </div>
       </div>
       <div class="col">
-        <div class="position-relative">
-          <div class=" rounded mb-3">
-            <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/03.png', alt: 'Native Banners', class: '', loading: 'lazy' %>
-          </div>
-          <h3 class="mb-0 h6 text-light">
-            Native Banners
-          </h3>
+        <div class="d-flex align-items-center gap-3 bg-white rounded-4 p-3 h-100">
+          <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/03.png', alt: 'Native Banners', class: 'rounded flex-shrink-0', style: 'width:56px;height:auto;', loading: 'lazy' %>
+          <span class="fw-semibold">Native Banners</span>
         </div>
       </div>
       <div class="col">
-        <div class="position-relative">
-          <div class=" rounded mb-3">
-            <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/05.png', alt: 'Direct Links', class: '', loading: 'lazy' %>
-          </div>
-          <h3 class="mb-0 h6 text-light">
-            Direct Links
-          </h3>
+        <div class="d-flex align-items-center gap-3 bg-white rounded-4 p-3 h-100">
+          <%= image_tag 'asg/profit-solutions/ad-server/ad-formats/05.png', alt: 'Direct Links', class: 'rounded flex-shrink-0', style: 'width:56px;height:auto;', loading: 'lazy' %>
+          <span class="fw-semibold">Direct Links</span>
         </div>
-      </div>
-    </div>
-    <div class="d-flex flex-wrap mb-0 pb-2 justify-content-lg-between">
-      <div class="col-sm-4 col-lg-2 col-12 mb-5 mb-lg-0">
-        <%= image_tag 'asg/demand-side/icons/01.svg', loading: "lazy", width: "80", height: "80", alt: "icon", class: "mb-4" %>
-        <h6 class="text-light fs-5 mb-4">Tube sites</h6>
-        <p class="fs-sm m-0 text-light pe-0 pe-sm-3 pe-lg-0">Leverage the power of Tube sites for maximum visibility and performance!</p>
-      </div>
-      <div class="col-sm-4 col-lg-2 col-12 mb-5 mb-lg-0">
-        <%= image_tag 'asg/demand-side/icons/02.svg', loading: "lazy", width: "80", height: "80", alt: "icon", class: "mb-4" %>
-        <h6 class="text-light fs-5 mb-4">File shares</h6>
-        <p class="fs-sm m-0 text-light pe-0 pe-sm-3 pe-lg-0">High-intent users actively engaging with content, ensuring strong ad visibility.</p>
-      </div>
-      <div class="col-sm-4 col-lg-2 col-12 mb-5 mb-lg-0">
-        <%= image_tag 'asg/demand-side/icons/03.svg', loading: "lazy", width: "80", height: "80", alt: "icon", class: "mb-4" %>
-        <h6 class="text-light fs-5 mb-4">Video hostings</h6>
-        <p class="fs-sm m-0 text-light pe-0 pe-sm-3 pe-lg-0">Long watch times and immersive experiences lead to higher engagement and retention.</p>
-      </div>
-      <div class="col-sm-4 col-lg-2 col-12 mb-5 mb-lg-0">
-        <%= image_tag 'asg/demand-side/icons/04.svg', loading: "lazy", width: "80", height: "80", alt: "icon", class: "mb-4" %>
-        <h6 class="text-light fs-5 mb-4">Adult sites</h6>
-        <p class="fs-sm m-0 text-light pe-0 pe-sm-3 pe-lg-0">Massive global traffic with dedicated audiences and high conversion potential.</p>
-      </div>
-      <div class="col-sm-4 col-lg-2 col-12 mb-5 mb-lg-0">
-        <%= image_tag 'asg/demand-side/icons/05.svg', loading: "lazy", width: "80", height: "80", alt: "icon", class: "mb-4" %>
-        <h6 class="text-light fs-5 mb-4">URL shorteners</h6>
-        <p class="fs-sm m-0 text-light pe-0 pe-sm-3 pe-lg-0">Wide reach with seamless ad placements on frequently visited links.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- Two ways to work with us -->
-<section id="paths" class="py-5 min-vh-100 d-flex align-items-center">
+<section id="paths" class="py-5 bg-dark text-light min-vh-100 d-flex align-items-center">
   <div class="my-lg-5 my-md-4 my-3 container">
     <div class="mb-lg-5 mb-4 pb-lg-0 pb-md-2 mx-auto text-center" style="max-width: 53.5rem;">
-      <h2 class="mb-md-4 mb-3 h1">
+      <h2 class="mb-md-4 mb-3 h1 text-light">
         Two ways to work with us
       </h2>
-      <p class="mb-0 fs-lg">
+      <p class="mb-0 fs-lg text-light">
         Pick the path that fits your stack. Most networks start with Traforama &mdash; it's the fastest way to get live.
       </p>
     </div>
@@ -249,7 +181,7 @@
 </section>
 
 <!-- Pre-integration: who it's for -->
-<section class="py-5 bg-white min-vh-100 d-flex align-items-center">
+<section class="py-5 min-vh-100 d-flex align-items-center">
   <div class="my-lg-5 my-md-4 my-3 container">
     <div class="mb-lg-5 mb-4 pb-lg-0 pb-md-2 mx-auto text-center" style="max-width: 53.5rem;">
       <h2 class="mb-md-4 mb-3 h1">
@@ -351,7 +283,7 @@
 </section>
 
 <!-- Terms -->
-<section id="terms" class="py-5 min-vh-100 d-flex align-items-center">
+<section id="terms" class="py-5 bg-white min-vh-100 d-flex align-items-center">
   <div class="my-lg-5 my-md-4 my-3 container">
     <div class="mb-lg-5 mb-4 pb-lg-0 pb-md-2 mx-auto text-center" style="max-width: 53.5rem;">
       <h2 class="mb-md-4 mb-3 h1">
